@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fernando Felippe | Desenvolvedor Full Stack</title>
+    <meta name="description" content="Portfólio de Fernando Felippe - Desenvolvedor Full Stack especializado em criar experiências digitais modernas e performáticas.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ========================================== -->
+    <!-- PRELOADER / ANIMACAO DE ABERTURA           -->
+    <!-- ========================================== -->
+    <div id="preloader">
+        <div class="preloader-bg"></div>
+        <div class="preloader-content">
+            <svg class="preloader-logo" viewBox="0 0 100 100" fill="none">
+                <defs>
+                    <linearGradient id="logoGrad" x1="0" y1="0" x2="100" y2="100">
+                        <stop offset="0%" stop-color="#00d4ff"/>
+                        <stop offset="100%" stop-color="#7b2ff7"/>
+                    </linearGradient>
+                </defs>
+                <!-- FF 3D Espelhado -->
+                <path class="logo-path" d="M20 30 L50 15 L50 45 L20 60 Z" fill="url(#logoGrad)" opacity="0"/>
+                <path class="logo-path" d="M80 30 L50 15 L50 45 L80 60 Z" fill="url(#logoGrad)" opacity="0"/>
+                <path class="logo-path" d="M20 60 L50 45 L50 75 L20 90 Z" fill="url(#logoGrad)" opacity="0"/>
+                <path class="logo-path" d="M80 60 L50 45 L50 75 L80 90 Z" fill="url(#logoGrad)" opacity="0"/>
+                <!-- Linhas estruturais -->
+                <line class="logo-line" x1="50" y1="15" x2="50" y2="45" stroke="#00d4ff" stroke-width="0.8" opacity="0"/>
+                <line class="logo-line" x1="20" y1="30" x2="20" y2="60" stroke="#00d4ff" stroke-width="0.8" opacity="0"/>
+                <line class="logo-line" x1="80" y1="30" x2="80" y2="60" stroke="#7b2ff7" stroke-width="0.8" opacity="0"/>
+            </svg>
+        </div>
+        <!-- Efeito de scanline/glitch -->
+        <div class="scanline"></div>
+        <div class="glitch-overlay"></div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- FUNDO DE CÓDIGO (CANVAS)                   -->
+    <!-- ========================================== -->
+    <canvas id="codeCanvas"></canvas>
+
+    <!-- ========================================== -->
+    <!-- HEADER / NAVEGAÇÃO                         -->
+    <!-- ========================================== -->
+    <header id="header">
+        <div class="container header-inner">
+            <a href="#" class="logo-small">
+                <svg viewBox="0 0 40 40" fill="none">
+                    <path d="M8 12 L20 6 L20 18 L8 24 Z" fill="url(#logoGrad)"/>
+                    <path d="M32 12 L20 6 L20 18 L32 24 Z" fill="url(#logoGrad)" opacity="0.6"/>
+                </svg>
+                <span>FF</span>
+            </a>
+            <nav class="nav-desktop">
+                <a href="#hero" class="nav-link active">Início</a>
+                <a href="#about" class="nav-link">Sobre</a>
+                <a href="#projects" class="nav-link">Projetos</a>
+                <a href="#contact" class="nav-link">Contato</a>
+            </nav>
+            <a href="https://www.linkedin.com/in/fernando-felippe" target="_blank" class="btn-outline">LinkedIn</a>
+            <button class="menu-toggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Menu Mobile -->
+    <div class="mobile-menu">
+        <a href="#hero" class="mobile-link">Início</a>
+        <a href="#about" class="mobile-link">Sobre</a>
+        <a href="#projects" class="mobile-link">Projetos</a>
+        <a href="#contact" class="mobile-link">Contato</a>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- HERO SECTION                               -->
+    <!-- ========================================== -->
+    <section id="hero" class="section-hero">
+        <div class="container hero-content">
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                Disponível para novos projetos
+            </div>
+            <p class="hero-eyebrow reveal-text">Olá, eu sou</p>
+            <h1 class="hero-title reveal-text">
+                <span class="gradient-text">Fernando</span>
+                <span class="gradient-text">Felippe.</span>
+            </h1>
+            <p class="hero-role reveal-text">Desenvolvedor Full Stack</p>
+            <p class="hero-desc reveal-text">
+                Transformo ideias em experiências digitais imersivas. 
+                Especialista em criar interfaces modernas, performáticas e 
+                visualmente impactantes que elevam marcas e negócios ao próximo nível.
+            </p>
+            <div class="hero-actions reveal-text">
+                <a href="#contact" class="btn-primary">
+                    Iniciar um projeto
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/fernando-felippe" target="_blank" class="btn-secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SOBRE SECTION                              -->
+    <!-- ========================================== -->
+    <section id="about" class="section-about">
+        <div class="container about-grid">
+            <div class="about-image reveal-up">
+                <div class="image-frame">
+                    <img src="images/foto.jpg" alt="Fernando Felippe">
+                    <div class="image-glow"></div>
+                </div>
+            </div>
+            <div class="about-text reveal-up">
+                <span class="section-tag">Sobre mim</span>
+                <h2 class="section-title">Criando o futuro<br><span class="gradient-text">linha de código por linha.</span></h2>
+                <p class="about-desc">
+                    Sou um desenvolvedor Full Stack apaixonado por transformar conceitos em realidade digital. 
+                    Combinando design refinado com engenharia de software, construo aplicações que não apenas 
+                    funcionam perfeitamente, mas também encantam visualmente.
+                </p>
+                <p class="about-desc">
+                    Minha abordagem une criatividade e técnica — cada projeto é uma oportunidade de criar 
+                    algo único, performático e memorável. Do front-end imersivo ao back-end robusto, 
+                    entrego soluções completas.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Next.js</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Tailwind</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- PROJETOS SECTION (PLACEHOLDER)             -->
+    <!-- ========================================== -->
+    <section id="projects" class="section-projects">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-tag">Projetos</span>
+                <h2 class="section-title">Trabalhos em <span class="gradient-text">destaque</span></h2>
+                <p class="section-subtitle">Em breve, cases completos dos projetos desenvolvidos.</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card reveal-up">
+                    <div class="project-thumb">
+                        <div class="project-placeholder">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <path d="M3 9h18M9 21V9"/>
+                            </svg>
+                            <span>Em breve</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Projeto 01</h3>
+                        <p>Descrição do projeto será adicionada em breve.</p>
+                        <div class="project-tags">
+                            <span>React</span><span>Node.js</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card reveal-up">
+                    <div class="project-thumb">
+                        <div class="project-placeholder">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <path d="M3 9h18M9 21V9"/>
+                            </svg>
+                            <span>Em breve</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Projeto 02</h3>
+                        <p>Descrição do projeto será adicionada em breve.</p>
+                        <div class="project-tags">
+                            <span>Next.js</span><span>TypeScript</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card reveal-up">
+                    <div class="project-thumb">
+                        <div class="project-placeholder">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <path d="M3 9h18M9 21V9"/>
+                            </svg>
+                            <span>Em breve</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Projeto 03</h3>
+                        <p>Descrição do projeto será adicionada em breve.</p>
+                        <div class="project-tags">
+                            <span>Python</span><span>API</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- CONTATO SECTION                            -->
+    <!-- ========================================== -->
+    <section id="contact" class="section-contact">
+        <div class="container contact-grid">
+            <div class="contact-info reveal-up">
+                <span class="section-tag">Contato</span>
+                <h2 class="section-title">Vamos criar algo <span class="gradient-text">incrível</span> juntos?</h2>
+                <p class="contact-desc">
+                    Estou sempre aberto a novas oportunidades, parcerias e projetos desafiadores. 
+                    Se você tem uma ideia, vamos conversar!
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:fernandofelippe2018@gmail.com" class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <div class="contact-detail">
+                            <span class="contact-label">E-mail</span>
+                            <span class="contact-value">fernandofelippe2018@gmail.com</span>
+                        </div>
+                    </a>
+                    <a href="https://wa.me/5517991993731" target="_blank" class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-detail">
+                            <span class="contact-label">WhatsApp</span>
+                            <span class="contact-value">(17) 99199-3731</span>
+                        </div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/fernando-felippe" target="_blank" class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-detail">
+                            <span class="contact-label">LinkedIn</span>
+                            <span class="contact-value">/in/fernando-felippe</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="contact-form-wrapper reveal-up">
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Em breve! Configure um serviço como Formspree ou EmailJS para receber mensagens.');">
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" id="name" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="seu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea id="message" rows="4" placeholder="Conte-me sobre seu projeto..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary btn-full">
+                        Enviar mensagem
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- FOOTER                                     -->
+    <!-- ========================================== -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-left">
+                <svg class="footer-logo" viewBox="0 0 40 40" fill="none">
+                    <path d="M8 12 L20 6 L20 18 L8 24 Z" fill="url(#logoGrad)"/>
+                    <path d="M32 12 L20 6 L20 18 L32 24 Z" fill="url(#logoGrad)" opacity="0.6"/>
+                </svg>
+                <span>© 2026 Fernando Felippe. Todos os direitos reservados.</span>
+            </div>
+            <div class="footer-right">
+                <a href="https://www.linkedin.com/in/fernando-felippe" target="_blank">LinkedIn</a>
+                <a href="mailto:fernandofelippe2018@gmail.com">E-mail</a>
+                <a href="https://wa.me/5517991993731" target="_blank">WhatsApp</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
