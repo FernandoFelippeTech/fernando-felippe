@@ -5,9 +5,11 @@ Recriar a logo em SVG (duas letras "F" espelhadas com efeito 3D, cores padrão d
 
 ## Passos
 
-- [ ] 1. Criar estrutura da nova logo SVG (duas letras "F" espelhadas com efeito 3D)
-- [ ] 2. Adicionar animação de rotação 3D no CSS (preloader)
-- [ ] 3. Substituir a logo no header (index.html)
-- [ ] 4. Substituir a logo no preloader (index.html)
-- [ ] 5. Substituir a logo no footer (index.html)
-- [ ] 6. Testar no navegador e fazer commit/push
+- [x] 1. Criar estrutura da nova logo SVG (duas letras "F" espelhadas com efeito 3D)
+- [x] 2. Adicionar animação de rotação 3D no CSS (preloader)
+- [x] 3. Substituir a logo no header (index.html)
+- [x] 4. Substituir a logo no preloader (index.html)
+- [x] 5. Substituir a logo no footer (index.html)
+- [x] 6. Corrigir caminho da foto para images/Foto.jpg
+- [x] 7. Testar no navegador e fazer commit/push
+</content>
