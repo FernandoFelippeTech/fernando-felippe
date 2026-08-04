@@ -18,23 +18,29 @@
     <div id="preloader">
         <div class="preloader-bg"></div>
         <div class="preloader-content">
-            <svg class="preloader-logo" viewBox="0 0 100 100" fill="none">
-                <defs>
-                    <linearGradient id="logoGrad" x1="0" y1="0" x2="100" y2="100">
-                        <stop offset="0%" stop-color="#00d4ff"/>
-                        <stop offset="100%" stop-color="#7b2ff7"/>
-                    </linearGradient>
-                </defs>
-                <!-- FF 3D Espelhado -->
-                <path class="logo-path" d="M20 30 L50 15 L50 45 L20 60 Z" fill="url(#logoGrad)" opacity="0"/>
-                <path class="logo-path" d="M80 30 L50 15 L50 45 L80 60 Z" fill="url(#logoGrad)" opacity="0"/>
-                <path class="logo-path" d="M20 60 L50 45 L50 75 L20 90 Z" fill="url(#logoGrad)" opacity="0"/>
-                <path class="logo-path" d="M80 60 L50 45 L50 75 L80 90 Z" fill="url(#logoGrad)" opacity="0"/>
-                <!-- Linhas estruturais -->
-                <line class="logo-line" x1="50" y1="15" x2="50" y2="45" stroke="#00d4ff" stroke-width="0.8" opacity="0"/>
-                <line class="logo-line" x1="20" y1="30" x2="20" y2="60" stroke="#00d4ff" stroke-width="0.8" opacity="0"/>
-                <line class="logo-line" x1="80" y1="30" x2="80" y2="60" stroke="#7b2ff7" stroke-width="0.8" opacity="0"/>
-            </svg>
+            <div class="logo-3d-wrapper">
+                <svg class="preloader-logo" viewBox="0 0 100 100" fill="none">
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0" y1="0" x2="100" y2="100">
+                            <stop offset="0%" stop-color="#00d4ff"/>
+                            <stop offset="50%" stop-color="#7b2ff7"/>
+                            <stop offset="100%" stop-color="#f472b6"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- Letra F (face superior - esquerda) -->
+                    <path class="logo-face" d="M22 12 L42 12 L42 20 L30 20 L30 32 L41 32 L41 40 L30 40 L30 88 L22 88 Z" fill="url(#logoGrad)"/>
+                    <!-- Letra F espelhada (direita) -->
+                    <path class="logo-face" d="M78 12 L58 12 L58 20 L70 20 L70 32 L59 32 L59 40 L70 40 L70 88 L78 88 Z" fill="url(#logoGrad)" opacity="0.75"/>
+                    <!-- Efeito 3D: topo (profundidade) -->
+                    <path d="M22 12 L27 6 L47 6 L42 12 Z" fill="#7b2ff7" opacity="0.6"/>
+                    <path d="M78 12 L73 6 L53 6 L58 12 Z" fill="#7b2ff7" opacity="0.4"/>
+                    <!-- Efeito 3D: brilho superior -->
+                    <path d="M22 12 L42 12 L42 20 L22 20 Z" fill="#ffffff" opacity="0.15"/>
+                    <path d="M78 12 L58 12 L58 20 L78 20 Z" fill="#ffffff" opacity="0.10"/>
+                    <!-- Linha de brilho central -->
+                    <line class="logo-line" x1="50" y1="6" x2="50" y2="88" stroke="#ffffff" stroke-width="0.8" opacity="0.3"/>
+                </svg>
+            </div>
         </div>
         <!-- Efeito de scanline/glitch -->
         <div class="scanline"></div>
@@ -51,12 +57,26 @@
     <!-- ========================================== -->
     <header id="header">
         <div class="container header-inner">
-            <a href="#" class="logo-small">
-                <svg viewBox="0 0 40 40" fill="none">
-                    <path d="M8 12 L20 6 L20 18 L8 24 Z" fill="url(#logoGrad)"/>
-                    <path d="M32 12 L20 6 L20 18 L32 24 Z" fill="url(#logoGrad)" opacity="0.6"/>
+<a href="#" class="logo-small">
+                <svg class="logo-header" viewBox="0 0 64 64" fill="none">
+                    <defs>
+                        <linearGradient id="logoGradH" x1="0" y1="0" x2="64" y2="64">
+                            <stop offset="0%" stop-color="#00d4ff"/>
+                            <stop offset="50%" stop-color="#7b2ff7"/>
+                            <stop offset="100%" stop-color="#f472b6"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- Letra F (face superior) -->
+                    <path d="M14 8 L30 8 L30 14 L20 14 L20 24 L29 24 L29 30 L20 30 L20 56 L14 56 Z" fill="url(#logoGradH)"/>
+                    <!-- Letra F espelhada (direita) -->
+                    <path d="M50 8 L34 8 L34 14 L44 14 L44 24 L35 24 L35 30 L44 30 L44 56 L50 56 Z" fill="url(#logoGradH)" opacity="0.75"/>
+                    <!-- Efeito 3D: arestas laterais superiores -->
+                    <path d="M14 8 L30 8 L30 14 L14 14 Z" fill="#ffffff" opacity="0.15"/>
+                    <path d="M50 8 L34 8 L34 14 L50 14 Z" fill="#ffffff" opacity="0.10"/>
+                    <!-- Efeito 3D: profundidade no topo -->
+                    <path d="M14 8 L18 4 L34 4 L30 8 Z" fill="#7b2ff7" opacity="0.5"/>
+                    <path d="M50 8 L46 4 L30 4 L34 8 Z" fill="#7b2ff7" opacity="0.35"/>
                 </svg>
-                <span>FF</span>
             </a>
             <nav class="nav-desktop">
                 <a href="#hero" class="nav-link active">Início</a>
@@ -127,7 +147,7 @@
         <div class="container about-grid">
             <div class="about-image reveal-up">
                 <div class="image-frame">
-<img src="images/foto.jpg" alt="Fernando Felippe">
+<img src="images/Foto.jpg" alt="Fernando Felippe">
                     <div class="image-glow"></div>
                 </div>
             </div>
@@ -302,10 +322,25 @@
     <!-- ========================================== -->
     <footer class="footer">
         <div class="container footer-inner">
-            <div class="footer-left">
-                <svg class="footer-logo" viewBox="0 0 40 40" fill="none">
-                    <path d="M8 12 L20 6 L20 18 L8 24 Z" fill="url(#logoGrad)"/>
-                    <path d="M32 12 L20 6 L20 18 L32 24 Z" fill="url(#logoGrad)" opacity="0.6"/>
+<div class="footer-left">
+                <svg class="footer-logo" viewBox="0 0 64 64" fill="none">
+                    <defs>
+                        <linearGradient id="logoGradF" x1="0" y1="0" x2="64" y2="64">
+                            <stop offset="0%" stop-color="#00d4ff"/>
+                            <stop offset="50%" stop-color="#7b2ff7"/>
+                            <stop offset="100%" stop-color="#f472b6"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- Letra F (face superior) -->
+                    <path d="M14 8 L30 8 L30 14 L20 14 L20 24 L29 24 L29 30 L20 30 L20 56 L14 56 Z" fill="url(#logoGradF)"/>
+                    <!-- Letra F espelhada (direita) -->
+                    <path d="M50 8 L34 8 L34 14 L44 14 L44 24 L35 24 L35 30 L44 30 L44 56 L50 56 Z" fill="url(#logoGradF)" opacity="0.75"/>
+                    <!-- Efeito 3D: brilho superior -->
+                    <path d="M14 8 L30 8 L30 14 L14 14 Z" fill="#ffffff" opacity="0.15"/>
+                    <path d="M50 8 L34 8 L34 14 L50 14 Z" fill="#ffffff" opacity="0.10"/>
+                    <!-- Efeito 3D: profundidade no topo -->
+                    <path d="M14 8 L18 4 L34 4 L30 8 Z" fill="#7b2ff7" opacity="0.5"/>
+                    <path d="M50 8 L46 4 L30 4 L34 8 Z" fill="#7b2ff7" opacity="0.35"/>
                 </svg>
                 <span>© 2026 Fernando Felippe. Todos os direitos reservados.</span>
             </div>
