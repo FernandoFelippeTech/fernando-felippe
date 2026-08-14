@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="ff-mark-title" color="#f2efe8">
+  <title id="ff-mark-title">Fernando Felippe</title>
+  <path fill="currentColor" d="M7 7h25v9H18v10h12l-4 9h-8v22H7V7Z"/>
+  <path fill="currentColor" d="M35 7h22l-4 9h-8v9h11l-5 9h-6v23H34V18l1-11Z"/>
+  <circle cx="55" cy="51" r="3" fill="#f5a623"/>
+</svg>
