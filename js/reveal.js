@@ -1,4 +1,4 @@
-const PRELOADER_MAX_MS = 6000;
+const PRELOADER_MIN_MS = 3000;
 const PRELOADER_EXIT_MS = 220;
 const PRELOADER_TYPE_MS = 1400;
 
@@ -42,25 +42,17 @@ export function initReveal(
 
   root?.classList.add('reveal-enabled');
 
-  if (preloader) {
+if (preloader) {
     preloader.classList.remove('is-exiting', 'is-hidden');
     preloader.hidden = false;
 
     const beginPreloaderExit = () => {
-      if (preloader.hidden || exitTimer !== undefined) return;
+      if (preloader.hidden) return;
       preloader.classList.add('is-exiting');
       exitTimer = setTimer(finishPreloader, PRELOADER_EXIT_MS);
     };
 
-    const scheduleExit = () => setTimer(beginPreloaderExit, PRELOADER_TYPE_MS);
-
-    safetyTimer = setTimer(finishPreloader, PRELOADER_MAX_MS);
-    if (documentRef.readyState === 'complete') {
-      scheduleExit();
-    } else if (windowRef?.addEventListener) {
-      loadListener = scheduleExit;
-      windowRef.addEventListener('load', loadListener, { once: true });
-    }
+    safetyTimer = setTimer(beginPreloaderExit, PRELOADER_MIN_MS);
   }
 
   if (typeof windowRef?.IntersectionObserver === 'function') {
