@@ -1,6 +1,6 @@
 const PRELOADER_MAX_MS = 6000;
 const PRELOADER_EXIT_MS = 220;
-const PRELOADER_TYPE_MS = 600;
+const PRELOADER_TYPE_MS = 1400;
 
 export function initReveal(
   documentRef = globalThis.document,
