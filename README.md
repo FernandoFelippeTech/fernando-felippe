@@ -1,6 +1,6 @@
-# Portfólio — Engenharia Criativa
+# Portfólio — Fernando Felippe
 
-Portfólio de Fernando Felippe com a identidade “Engenharia Criativa”. A página apresenta atuação full stack, projetos em desenvolvimento, competências, processo de trabalho e canais de contato em uma experiência responsiva e acessível.
+Portfólio de Fernando Felippe com uma nova identidade. A página apresenta atuação full stack, projetos em desenvolvimento, competências, processo de trabalho e canais de contato em uma experiência responsiva e acessível.
 
 ## Stack
 
