@@ -1,5 +1,6 @@
 const PRELOADER_MAX_MS = 900;
 const PRELOADER_EXIT_MS = 220;
+const PRELOADER_TYPE_MS = 600;
 
 export function initReveal(
   documentRef = globalThis.document,
@@ -51,11 +52,13 @@ export function initReveal(
       exitTimer = setTimer(finishPreloader, PRELOADER_EXIT_MS);
     };
 
+    const scheduleExit = () => setTimer(beginPreloaderExit, PRELOADER_TYPE_MS);
+
     safetyTimer = setTimer(finishPreloader, PRELOADER_MAX_MS);
     if (documentRef.readyState === 'complete') {
-      beginPreloaderExit();
+      scheduleExit();
     } else if (windowRef?.addEventListener) {
-      loadListener = beginPreloaderExit;
+      loadListener = scheduleExit;
       windowRef.addEventListener('load', loadListener, { once: true });
     }
   }
