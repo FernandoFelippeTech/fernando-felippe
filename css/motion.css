@@ -40,7 +40,7 @@
   border-right: 2px solid var(--color-accent);
   width: 0;
   animation:
-    preloader-type 600ms steps(16, end) forwards,
+    preloader-type 1400ms steps(16, end) forwards,
     preloader-caret 500ms step-end infinite;
 }
 
