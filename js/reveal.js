@@ -1,6 +1,5 @@
-const PRELOADER_MIN_MS = 3000;
+const PRELOADER_FALLBACK_MS = 900;
 const PRELOADER_EXIT_MS = 220;
-const PRELOADER_TYPE_MS = 1400;
 
 export function initReveal(
   documentRef = globalThis.document,
@@ -10,28 +9,32 @@ export function initReveal(
 
   const root = documentRef.documentElement;
   const preloader = documentRef.getElementById?.('preloader');
-  const revealTargets = [...documentRef.querySelectorAll('[data-reveal]')];
+  const targets = [...documentRef.querySelectorAll('[data-reveal]')];
   const reducedMotion = windowRef?.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
   const setTimer = windowRef?.setTimeout?.bind(windowRef) ?? globalThis.setTimeout;
   const clearTimer = windowRef?.clearTimeout?.bind(windowRef) ?? globalThis.clearTimeout;
   let observer;
   let exitTimer;
-  let safetyTimer;
+  let fallbackTimer;
   let loadListener;
 
-  const revealAll = () => {
-    revealTargets.forEach((target) => target.classList.add('is-visible'));
-  };
+  const revealAll = () => targets.forEach((target) => target.classList.add('is-visible'));
 
   const finishPreloader = () => {
     if (!preloader) return;
     if (exitTimer !== undefined) clearTimer(exitTimer);
-    if (safetyTimer !== undefined) clearTimer(safetyTimer);
+    if (fallbackTimer !== undefined) clearTimer(fallbackTimer);
     exitTimer = undefined;
-    safetyTimer = undefined;
+    fallbackTimer = undefined;
     preloader.hidden = true;
     preloader.classList.remove('is-exiting');
     preloader.classList.add('is-hidden');
+  };
+
+  const beginPreloaderExit = () => {
+    if (!preloader || preloader.hidden) return;
+    preloader.classList.add('is-exiting');
+    exitTimer = setTimer(finishPreloader, PRELOADER_EXIT_MS);
   };
 
   if (reducedMotion) {
@@ -42,17 +45,17 @@ export function initReveal(
 
   root?.classList.add('reveal-enabled');
 
-if (preloader) {
+  if (preloader) {
     preloader.classList.remove('is-exiting', 'is-hidden');
     preloader.hidden = false;
+    fallbackTimer = setTimer(beginPreloaderExit, PRELOADER_FALLBACK_MS);
 
-    const beginPreloaderExit = () => {
-      if (preloader.hidden) return;
-      preloader.classList.add('is-exiting');
-      exitTimer = setTimer(finishPreloader, PRELOADER_EXIT_MS);
-    };
-
-    safetyTimer = setTimer(beginPreloaderExit, PRELOADER_MIN_MS);
+    if (documentRef.readyState === 'complete') {
+      beginPreloaderExit();
+    } else {
+      loadListener = beginPreloaderExit;
+      windowRef?.addEventListener?.('load', loadListener, { once: true });
+    }
   }
 
   if (typeof windowRef?.IntersectionObserver === 'function') {
@@ -60,20 +63,17 @@ if (preloader) {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
         entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
+        observer.unobserve?.(entry.target);
       }
-    }, {
-      rootMargin: '0px 0px -12% 0px',
-      threshold: 0.12,
-    });
-    revealTargets.forEach((target) => observer.observe(target));
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+    targets.forEach((target) => observer.observe(target));
   } else {
     revealAll();
   }
 
   return () => {
     observer?.disconnect();
-    if (loadListener) windowRef.removeEventListener('load', loadListener);
+    if (loadListener) windowRef?.removeEventListener?.('load', loadListener);
     finishPreloader();
     revealAll();
   };

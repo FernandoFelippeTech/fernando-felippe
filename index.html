@@ -3,8 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fernando Felippe | Desenvolvedor Full Stack</title>
-  <meta name="description" content="Portfólio de Fernando Felippe, desenvolvedor full stack que une engenharia e pensamento visual para criar produtos digitais claros e robustos.">
+  <title>Fernando Felippe | AI Engineer</title>
+  <meta name="description" content="Portfólio de Fernando Felippe, desenvolvedor de software com foco em Engenharia de Inteligência Artificial, LLMs, RAG, agentes, APIs e dados.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Fernando Felippe | AI Engineer">
+  <meta property="og:description" content="Software, dados e inteligência artificial transformados em aplicações reais.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Fernando Felippe | AI Engineer">
+  <meta name="twitter:description" content="Software, dados e inteligência artificial transformados em aplicações reais.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -15,8 +21,8 @@
   <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
 
   <div id="preloader" aria-hidden="true" hidden>
-    <img class="preloader-mark" src="images/ff-mark.svg" alt="" width="96" height="96">
-    <span class="preloader-name">Fernando Felippe</span>
+    <img class="preloader-mark" src="images/ff-mark.svg" alt="" width="64" height="64">
+    <span class="preloader-signal"></span>
   </div>
 
   <canvas id="technical-canvas" aria-hidden="true"></canvas>
@@ -24,33 +30,32 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="#hero" aria-label="Fernando Felippe — início">
-        <img src="images/ff-mark.svg" alt="" width="48" height="48">
+        <img src="images/ff-mark.svg" alt="" width="44" height="44">
         <span>Fernando Felippe</span>
       </a>
 
       <nav class="desktop-nav" aria-label="Navegação principal">
         <a class="nav-link" href="#hero">Início</a>
         <a class="nav-link" href="#about">Sobre</a>
-        <a class="nav-link" href="#projects">Projetos</a>
         <a class="nav-link" href="#skills">Competências</a>
-        <a class="nav-link" href="#process">Processo</a>
+        <a class="nav-link" href="#projects">Projetos</a>
         <a class="nav-link" href="#contact">Contato</a>
       </nav>
 
+      <a class="cv-link desktop-cv" href="docs/Fernando-Felippe-CV.pdf" download>Baixar CV <span aria-hidden="true">↓</span></a>
+
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
       </button>
     </div>
 
     <nav class="mobile-menu" id="mobile-menu" aria-label="Navegação mobile">
       <a class="mobile-link" href="#hero">Início</a>
       <a class="mobile-link" href="#about">Sobre</a>
-      <a class="mobile-link" href="#projects">Projetos</a>
       <a class="mobile-link" href="#skills">Competências</a>
-      <a class="mobile-link" href="#process">Processo</a>
+      <a class="mobile-link" href="#projects">Projetos</a>
       <a class="mobile-link" href="#contact">Contato</a>
+      <a class="mobile-cv" href="docs/Fernando-Felippe-CV.pdf" download>Baixar CV <span aria-hidden="true">↓</span></a>
     </nav>
   </header>
 
@@ -58,124 +63,64 @@
     <section id="hero" class="hero-section">
       <div class="container hero-grid">
         <div class="hero-copy" data-reveal>
-          <p class="eyebrow">ENGENHARIA CRIATIVA • FULL STACK</p>
+          <p class="eyebrow">INTELIGÊNCIA ARTIFICIAL • ENGENHARIA DE SOFTWARE</p>
           <h1>Fernando Felippe</h1>
-          <p class="hero-role">Desenvolvedor Full Stack</p>
-          <p class="hero-summary">Transformo problemas em produtos digitais claros, robustos e memoráveis — da interface à arquitetura.</p>
+          <p class="hero-role">AI Engineer<span class="terminal-cursor" aria-hidden="true"></span></p>
+          <p class="hero-stack">Python • LLMs • RAG • Agentes de IA • APIs • SQL</p>
+          <p class="hero-statement">Código que <strong>resolve problemas</strong>.<br>Inteligência que <strong>gera impacto</strong>.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#projects">Explorar projetos</a>
+            <a class="button button-primary" href="#projects">Ver projetos</a>
             <a class="button button-secondary" href="#contact">Entrar em contato</a>
           </div>
         </div>
 
-        <div class="hero-construct" aria-hidden="true" data-reveal>
-          <span class="construct-plane construct-plane-primary"></span>
-          <span class="construct-plane construct-plane-secondary"></span>
-          <span class="construct-plane construct-plane-tertiary"></span>
-          <span class="construct-line construct-line-horizontal"></span>
-          <span class="construct-line construct-line-vertical"></span>
-          <span class="construct-node"></span>
+        <div class="code-system" aria-hidden="true" data-reveal>
+          <span class="code-prompt">&gt;_</span>
+          <div class="code-grid"></div>
+          <span class="code-node code-node-a"></span><span class="code-node code-node-b"></span><span class="code-node code-node-c"></span><span class="code-node code-node-d"></span>
+          <span class="data-flow data-flow-a"></span><span class="data-flow data-flow-b"></span><span class="data-flow data-flow-c"></span>
+          <div class="code-window">
+            <div class="code-window-bar"><span></span><span></span><span></span><small>solution.py</small></div>
+            <pre><code><span class="code-key">def</span> <span class="code-call">build_solutions</span>(data):
+    model = Intelligence()
+    context = DataPipeline(data)
+    agent = Agent(model, context)
+    <span class="code-key">return</span> agent.<span class="code-call">solve</span>()
+
+<span class="code-comment"># Transformando código em impacto real.</span></code></pre>
+          </div>
         </div>
       </div>
+      <p class="hero-coordinate" aria-hidden="true">SYS.01 / BUILDING INTELLIGENCE</p>
     </section>
 
     <section id="about" class="about-section">
-      <div class="container about-grid">
-        <figure class="about-portrait" data-reveal>
-          <span class="section-index" aria-hidden="true">01</span>
-          <img src="images/Foto.jpg" width="768" height="1376" loading="lazy" alt="Fernando Felippe, desenvolvedor full stack">
-        </figure>
-
-        <div class="about-copy" data-reveal>
-          <p class="eyebrow">SOBRE</p>
-          <h2 class="section-heading">Código com intenção. Experiências com estrutura.</h2>
-          <p>Uno desenvolvimento e pensamento visual para construir aplicações que funcionam bem, comunicam com clareza e evoluem com segurança.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="projects-section">
       <div class="container">
         <div class="section-intro" data-reveal>
-          <p class="eyebrow">PROJETOS</p>
-          <h2 class="section-heading">Produtos em construção, desafios reais.</h2>
-          <p>Dois projetos com foco em experiência, organização e evolução responsável.</p>
+          <p class="eyebrow">SOBRE MIM</p>
+          <h2 class="section-heading">Software como base.<br>IA como direção.</h2>
+          <p>Desenvolvedor de software direcionando sua especialização para Engenharia de Inteligência Artificial.</p>
         </div>
 
-        <div class="projects-grid">
-          <article class="project-card" data-reveal>
-            <div class="project-visual project-visual-lexora" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            <div class="project-card-body">
-              <header class="project-header">
-                <p class="project-index">01</p>
-                <p class="project-status">Em desenvolvimento</p>
-              </header>
-              <h3>Lexora</h3>
-              <div class="project-problem">
-                <h4>Problema</h4>
-                <p>Tornar o estudo de idiomas mais estruturado, pessoal e consistente.</p>
-              </div>
-              <div class="project-features">
-                <h4>Funcionalidades</h4>
-                <ul>
-                  <li>vocabulário por contexto</li>
-                  <li>revisão espaçada</li>
-                  <li>progresso de aprendizagem</li>
-                </ul>
-              </div>
-              <div class="project-stage">
-                <h4>Estágio</h4>
-                <p>Arquitetura e experiência principal em evolução.</p>
-              </div>
-              <ul class="project-tags" aria-label="Tecnologias do Lexora">
-                <li>TypeScript</li>
-                <li>React</li>
-                <li>SQLite</li>
-                <li>Prisma</li>
-              </ul>
-            </div>
-          </article>
+        <div class="about-layout">
+          <figure class="about-portrait" data-reveal>
+            <img src="images/Foto.jpg" width="768" height="1376" loading="lazy" alt="Fernando Felippe, desenvolvedor de software">
+            <figcaption><span>Fernando Felippe</span><span>Software → AI</span></figcaption>
+          </figure>
 
-          <article class="project-card" data-reveal>
-            <div class="project-visual project-visual-talentos" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
+          <div class="about-content">
+            <div class="about-copy" data-reveal>
+              <p>Sou desenvolvedor de software com foco em Engenharia de Inteligência Artificial, construindo minha especialização no desenvolvimento de soluções que integram software, dados e IA.</p>
+              <p>Minha base em desenvolvimento de software me permite ir além do uso isolado de modelos de IA, buscando entender como transformar essas tecnologias em aplicações reais, integradas a APIs, bancos de dados e outros sistemas.</p>
+              <p>Atualmente, direciono meus estudos e projetos para Python, LLMs, RAG, Agentes de IA, APIs e SQL, aprofundando progressivamente conhecimentos em Machine Learning e na construção, integração e implantação de sistemas baseados em IA.</p>
             </div>
-            <div class="project-card-body">
-              <header class="project-header">
-                <p class="project-index">02</p>
-                <p class="project-status">Em desenvolvimento</p>
-              </header>
-              <h3>Talentos Barbearia</h3>
-              <div class="project-problem">
-                <h4>Problema</h4>
-                <p>Simplificar a descoberta de serviços e o agendamento pelo celular.</p>
-              </div>
-              <div class="project-features">
-                <h4>Funcionalidades</h4>
-                <ul>
-                  <li>seleção de serviços</li>
-                  <li>calendário e horários</li>
-                  <li>gestão de agendamentos</li>
-                </ul>
-              </div>
-              <div class="project-stage">
-                <h4>Estágio</h4>
-                <p>Fluxo de agendamento e experiência mobile em refinamento.</p>
-              </div>
-              <ul class="project-tags" aria-label="Tecnologias do Talentos Barbearia">
-                <li>React</li>
-                <li>TypeScript</li>
-                <li>UX Mobile</li>
-                <li>Design Responsivo</li>
-              </ul>
+
+            <div class="about-summary" data-reveal>
+              <article class="summary-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3.5a3 3 0 0 0-3 3v.7a3 3 0 0 0-1.5 5.5V14A3 3 0 0 0 7 17v.5a3 3 0 0 0 5 2.2V4.3A3 3 0 0 0 9 3.5Zm6 0a3 3 0 0 1 3 3v.7a3 3 0 0 1 1.5 5.5V14a3 3 0 0 1-2.5 3v.5a3 3 0 0 1-5 2.2V4.3a3 3 0 0 1 3-0.8Z"/></svg><div><h3>INTELIGÊNCIA ARTIFICIAL</h3><p>LLMs, RAG, Agentes e aplicações inteligentes.</p></div></article>
+              <article class="summary-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5-5 7 5 7M16 5l5 7-5 7M14 3l-4 18"/></svg><div><h3>DESENVOLVIMENTO DE SOFTWARE</h3><p>APIs, Python, JavaScript/TypeScript e arquitetura de sistemas.</p></div></article>
+              <article class="summary-item"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v7c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12v7c0 1.7 3.6 3 8 3s8-1.3 8-3v-7"/></svg><div><h3>DADOS</h3><p>SQL, modelagem e integração de dados.</p></div></article>
             </div>
-          </article>
+          </div>
         </div>
       </div>
     </section>
@@ -184,83 +129,57 @@
       <div class="container">
         <div class="section-intro" data-reveal>
           <p class="eyebrow">COMPETÊNCIAS</p>
-          <h2 class="section-heading">Tecnologia organizada por responsabilidade.</h2>
+          <h2 class="section-heading">Tecnologia organizada por sistemas.</h2>
+          <p>Stack e áreas de foco para construir aplicações que conectam inteligência, software e dados.</p>
         </div>
 
         <div class="skills-grid">
-          <article class="skill-group" data-reveal>
-            <p class="skill-index">01</p>
-            <h3>Interfaces</h3>
-            <ul>
-              <li>HTML</li>
-              <li>CSS</li>
-              <li>JavaScript</li>
-              <li>React</li>
-            </ul>
+          <article class="skill-group system-card" data-reveal>
+            <span class="skill-index">01</span><div class="skill-icon"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M18 8a7 7 0 0 0-7 7v2a7 7 0 0 0-3 12v2a7 7 0 0 0 10 6M30 8a7 7 0 0 1 7 7v2a7 7 0 0 1 3 12v2a7 7 0 0 1-10 6M24 7v34M15 19h9M33 19h-9M14 30h10M34 30H24"/><circle cx="15" cy="19" r="2"/><circle cx="34" cy="30" r="2"/></svg></div><div class="skill-content"><h3>AI ENGINEERING</h3><ul><li>Python</li><li>LLMs</li><li>RAG</li><li>Agentes de IA</li></ul></div><div class="skill-microgrid grid-ai" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
           </article>
-
-          <article class="skill-group" data-reveal>
-            <p class="skill-index">02</p>
-            <h3>Aplicações</h3>
-            <ul>
-              <li>TypeScript</li>
-              <li>Next.js</li>
-              <li>Node.js</li>
-            </ul>
+          <article class="skill-group system-card" data-reveal>
+            <span class="skill-index">02</span><div class="skill-icon"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="m18 13-11 11 11 11M30 13l11 11-11 11M28 8l-8 32"/></svg></div><div class="skill-content"><h3>BACKEND &amp; APIs</h3><ul><li>APIs</li><li>Python</li><li>Node.js</li><li>JavaScript</li></ul></div><div class="skill-microgrid grid-api" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
           </article>
-
-          <article class="skill-group" data-reveal>
-            <p class="skill-index">03</p>
-            <h3>Dados</h3>
-            <ul>
-              <li>SQLite</li>
-              <li>Prisma</li>
-              <li>APIs</li>
-            </ul>
+          <article class="skill-group system-card" data-reveal>
+            <span class="skill-index">03</span><div class="skill-icon"><svg viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="24" cy="11" rx="14" ry="6"/><path d="M10 11v13c0 3.3 6.3 6 14 6s14-2.7 14-6V11M10 24v13c0 3.3 6.3 6 14 6s14-2.7 14-6V24"/></svg></div><div class="skill-content"><h3>DADOS</h3><ul><li>SQL</li><li>Modelagem de dados</li><li>Integração de dados</li></ul></div><div class="skill-microgrid grid-data" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
           </article>
-
-          <article class="skill-group" data-reveal>
-            <p class="skill-index">04</p>
-            <h3>Qualidade</h3>
-            <ul>
-              <li>Responsividade</li>
-              <li>Acessibilidade</li>
-              <li>Testes</li>
-            </ul>
+          <article class="skill-group system-card" data-reveal>
+            <span class="skill-index">04</span><div class="skill-icon"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="m12 15 10 9-10 9M26 34h12"/></svg></div><div class="skill-content"><h3>SOFTWARE ENGINEERING</h3><ul><li>Git / GitHub</li><li>TypeScript</li><li>HTML</li><li>CSS</li><li>React</li></ul></div><div class="skill-microgrid grid-software" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="process" class="process-section">
-      <div class="container">
-        <div class="section-intro" data-reveal>
-          <p class="eyebrow">PROCESSO</p>
-          <h2 class="section-heading">Do problema à evolução do produto.</h2>
+    <section id="projects" class="projects-section">
+      <div class="repository-stack" aria-hidden="true">
+        <svg class="repo-connections" viewBox="0 0 660 390" preserveAspectRatio="none"><path d="M95 300C180 300 165 215 255 215S350 126 442 126 500 72 580 72"/><path d="M165 340H350c56 0 46-82 105-82h120"/><circle cx="95" cy="300" r="4"/><circle cx="255" cy="215" r="4"/><circle cx="442" cy="126" r="4"/><circle cx="575" cy="258" r="4"/></svg>
+        <div class="project-repo-card repo-card-back">
+          <div class="repo-card-head"><span>PROJETO 03</span><strong>EM BREVE</strong></div>
+          <div class="repo-code"><i></i><i></i><i></i></div>
+          <span class="repo-area">DATA</span>
         </div>
-
-        <ol class="process-list">
-          <li class="process-step" data-reveal>
-            <span class="process-number">01</span>
-            <h3>Entender</h3>
-            <p>Mapear o problema, o contexto e as prioridades.</p>
-          </li>
-          <li class="process-step" data-reveal>
-            <span class="process-number">02</span>
-            <h3>Estruturar</h3>
-            <p>Organizar fluxos, arquitetura e decisões visuais.</p>
-          </li>
-          <li class="process-step" data-reveal>
-            <span class="process-number">03</span>
-            <h3>Construir</h3>
-            <p>Implementar a solução com clareza e consistência.</p>
-          </li>
-          <li class="process-step" data-reveal>
-            <span class="process-number">04</span>
-            <h3>Validar</h3>
-            <p>Testar a experiência, corrigir riscos e preparar a evolução.</p>
-          </li>
-        </ol>
+        <div class="project-repo-card repo-card-middle">
+          <div class="repo-card-head"><span>PROJETO 02</span><strong>EM BREVE</strong></div>
+          <div class="repo-code"><i></i><i></i><i></i></div>
+          <span class="repo-area">SOFTWARE</span>
+        </div>
+        <div class="project-repo-card repo-card-front">
+          <div class="repo-card-head"><span class="repo-icon">&lt;/&gt;</span><span>PROJETO 01</span><strong>EM BREVE</strong></div>
+          <div class="repo-body">
+            <div class="repo-code"><i></i><i></i><i></i><i></i></div>
+            <div class="repo-meta"><span>BRANCH</span><b>future/build</b></div>
+          </div>
+          <span class="repo-area">AI</span>
+        </div>
+      </div>
+      <div class="container project-content">
+        <p class="eyebrow" data-reveal>PROJETOS</p>
+        <h2 class="section-heading" data-reveal>Construindo o que vem a seguir.</h2>
+        <p class="project-description" data-reveal>Novos projetos serão publicados em breve, explorando Inteligência Artificial, LLMs, RAG, Agentes de IA e desenvolvimento de software.</p>
+        <div class="terminal-panel system-card" data-reveal>
+          <div class="terminal-bar"><span></span><span></span><span></span><small>projects.log</small></div>
+          <p data-terminal-text="// novos projetos em breve"><span data-terminal-output>// novos projetos em breve</span><span class="terminal-cursor" data-terminal-cursor aria-hidden="true"></span></p>
+        </div>
       </div>
     </section>
 
@@ -268,31 +187,24 @@
       <div class="container contact-grid">
         <div class="contact-copy" data-reveal>
           <p class="eyebrow">CONTATO</p>
-          <h2 class="section-heading">Vamos construir algo com intenção?</h2>
-          <p>Conte o contexto, o desafio e o que você quer colocar em movimento.</p>
+          <h2 class="section-heading">Vamos construir algo inteligente?</h2>
+          <p>Se existe um problema real, uma ideia ou um sistema que pode evoluir com software e IA, vamos conversar.</p>
         </div>
-
-        <div class="contact-panel" data-reveal>
-          <a class="contact-cta" href="mailto:fernandofelippe2018@gmail.com">Escrever um e-mail</a>
-          <ul class="contact-links">
-            <li><a href="mailto:fernandofelippe2018@gmail.com">fernandofelippe2018@gmail.com</a></li>
-            <li><a href="https://www.linkedin.com/in/fernando-felippe" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-            <li><a href="https://github.com/FernandoFelippeTech" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            <li><a href="https://wa.me/5517991993731" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
-          </ul>
+        <div class="social-actions" data-reveal>
+          <a href="mailto:fernandofelippe2018@gmail.com" aria-label="Enviar e-mail" title="Enviar e-mail"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m4 7 8 6 8-6"/></svg></a>
+          <a href="https://www.linkedin.com/in/fernando-felippe" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9v10M6 5.5v.1M10 19v-6a4 4 0 0 1 8 0v6M10 9v10"/></svg></a>
+          <a href="https://github.com/FernandoFelippeTech" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 21v-3.5c.1-1-.3-1.8-.8-2.3 3-.3 6.1-1.5 6.1-6.7A5.2 5.2 0 0 0 19 4.9 4.8 4.8 0 0 0 18.9 1S17.8.7 15 2.4a13.4 13.4 0 0 0-6 0C6.2.7 5.1 1 5.1 1A4.8 4.8 0 0 0 5 4.9a5.2 5.2 0 0 0-1.4 3.6c0 5.2 3.2 6.4 6.2 6.7-.4.4-.7 1-.8 1.8-1 .5-3.4 1.3-4.8-1.4 0 0-.9-1.6-2.5-1.7M9 21v-4"/></svg></a>
+          <a href="https://wa.me/5517991993731" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.4-4.7A8.5 8.5 0 1 1 20.5 11.7Z"/><path d="M8.2 7.8c.2-.5.5-.5.8-.5h.4c.2 0 .4 0 .5.4l.8 1.9c.1.3.1.5-.1.7l-.6.7c-.2.2-.2.4-.1.6.6 1.2 1.6 2.1 2.8 2.7.2.1.4.1.6-.1l.8-1c.2-.2.4-.3.7-.2l1.8.9c.3.1.5.3.5.5 0 .4-.2 1.5-1 2.1-.7.6-1.7.8-2.6.5-1.2-.4-2.8-1-4.5-2.5-1.4-1.3-2.4-2.9-2.7-4-.3-1 .1-2 .6-2.7Z"/></svg></a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <a class="footer-brand" href="#hero" aria-label="Fernando Felippe — início">
-        <img src="images/ff-mark.svg" alt="" width="40" height="40">
-        <span>Fernando Felippe</span>
-      </a>
-      <p>Engenharia criativa para produtos digitais.</p>
-      <a href="mailto:fernandofelippe2018@gmail.com">E-mail</a>
+    <div class="container footer-grid">
+      <a class="footer-brand" href="#hero" aria-label="Fernando Felippe — início"><img src="images/ff-mark.svg" alt="" width="40" height="40"><span><strong>Fernando Felippe</strong><small>AI Engineer</small></span></a>
+      <div class="footer-center"><nav class="footer-nav" aria-label="Navegação do rodapé"><a href="#hero">Início</a><a href="#about">Sobre</a><a href="#skills">Competências</a><a href="#projects">Projetos</a><a href="#contact">Contato</a></nav><p>© 2026 Fernando Felippe. Todos os direitos reservados.</p></div>
+      <div class="footer-social"><a href="https://www.linkedin.com/in/fernando-felippe" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9v10M6 5.5v.1M10 19v-6a4 4 0 0 1 8 0v6M10 9v10"/></svg></a><a href="https://github.com/FernandoFelippeTech" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 21v-3.5c.1-1-.3-1.8-.8-2.3 3-.3 6.1-1.5 6.1-6.7A5.2 5.2 0 0 0 19 4.9 4.8 4.8 0 0 0 18.9 1S17.8.7 15 2.4a13.4 13.4 0 0 0-6 0C6.2.7 5.1 1 5.1 1A4.8 4.8 0 0 0 5 4.9a5.2 5.2 0 0 0-1.4 3.6c0 5.2 3.2 6.4 6.2 6.7-.4.4-.7 1-.8 1.8M9 21v-4"/></svg></a></div>
     </div>
   </footer>
 

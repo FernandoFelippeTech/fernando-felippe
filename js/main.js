@@ -1,6 +1,7 @@
 import { initNavigation } from './navigation.js';
 import { initReveal } from './reveal.js';
 import { initTechnicalCanvas } from './technical-canvas.js';
+import { initProjectTerminal } from './project-terminal.js';
 
 export function initCardLighting(
   documentRef = globalThis.document,
@@ -9,7 +10,7 @@ export function initCardLighting(
   const finePointer = windowRef?.matchMedia?.('(hover: hover) and (pointer: fine)').matches === true;
   if (!finePointer || !documentRef?.querySelectorAll) return undefined;
 
-  const cards = [...documentRef.querySelectorAll('.project-card')];
+  const cards = [...documentRef.querySelectorAll('.system-card')];
   const handlePointerMove = (event) => {
     if (event.pointerType === 'touch') return;
     const card = event.currentTarget ?? event.target;
@@ -32,5 +33,6 @@ if (typeof document !== 'undefined' && typeof window !== 'undefined') {
   initNavigation();
   initReveal();
   initTechnicalCanvas();
+  initProjectTerminal();
   initCardLighting();
 }

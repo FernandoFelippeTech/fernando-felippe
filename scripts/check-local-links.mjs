@@ -17,6 +17,11 @@ export function validateLocalLinks(html, rootDir) {
   const references = [
     ...html.matchAll(new RegExp(`\\b(?:href|src)\\s*=\\s*${attributeValue.source}`, 'gi')),
   ].map((match) => getAttributeValue(match).trim());
+  const optionalReferences = new Set(
+    [...html.matchAll(/<[^>]*\bdata-optional-file\b[^>]*>|<[^>]*\b(?:href|src)\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'=<>`]+)[^>]*\bdata-optional-file\b[^>]*>/gi)]
+      .flatMap(([tag]) => [...tag.matchAll(new RegExp(`\\b(?:href|src)\\s*=\\s*${attributeValue.source}`, 'gi'))])
+      .map((match) => getAttributeValue(match).trim()),
+  );
   const errors = [];
 
   for (const reference of references) {
@@ -33,7 +38,7 @@ export function validateLocalLinks(html, rootDir) {
     }
 
     const pathWithoutQueryOrHash = reference.slice(0, hashIndex >= 0 ? hashIndex : undefined).replace(/\?.*$/, '');
-    if (pathWithoutQueryOrHash && !existsSync(resolve(rootDir, pathWithoutQueryOrHash))) {
+    if (pathWithoutQueryOrHash && !optionalReferences.has(reference) && !existsSync(resolve(rootDir, pathWithoutQueryOrHash))) {
       errors.push(`Missing local file: ${pathWithoutQueryOrHash}`);
     }
   }

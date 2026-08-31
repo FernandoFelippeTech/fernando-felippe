@@ -1,50 +1,44 @@
-# Decisões de Design — Portfólio
+# Decisões de Design — Portfólio AI Engineer
 
-**Data:** 2026-08-11
-**Status:** Aprovada
+**Data:** 2026-08-30
+**Status:** Implementada na branch `redesign-ai-engineer`
 
-## Contexto
+## Direção
 
-A versão anterior do portfólio usava fundo escuro, gradiente ciano/roxo/rosa, partículas de código e um monograma com dois "F" espelhados. Comunicava tecnologia, mas se aproximava de templates genéricos e não diferenciava o autor o suficiente.
-
-Direção aprovada: **"Engenharia Criativa"** — precisão técnica combinada com experimentação visual, mantendo desempenho, clareza e manutenção simples no GitHub Pages. Público-alvo: clientes em potencial e recrutadores, em equilíbrio.
+O portfólio posiciona Fernando Felippe como desenvolvedor de software construindo especialização em Engenharia de Inteligência Artificial. A comunicação combina IA, engenharia de software, dados e construção de produtos reais, sem alegar experiência profissional não comprovada.
 
 ## Identidade visual
 
-**Paleta:** grafite quase preto (fundo), branco quente (texto), âmbar elétrico (ação/sinalização), cinza metálico e transparências sutis. Gradiente ciano/roxo/rosa removido.
+- Fundo grafite, texto branco quente e âmbar como sinal funcional.
+- Azul acinzentado aparece somente em detalhes de dados e conexões.
+- Space Grotesk para conteúdo e IBM Plex Mono para estados técnicos.
+- Grid, linhas, nós, órbitas e estruturas procedurais sugerem sistemas sendo construídos.
+- Sem neon excessivo, cyberpunk, robôs, cérebros 3D ou imagens genéricas de IA.
 
-**Tipografia:** sans-serif forte para títulos/conteúdo; monoespaçada só em etiquetas, índices, status e detalhes técnicos.
+## Estrutura
 
-**Marca:** monograma "FF" com geometria autoral (não espelhamento simples nem gradiente genérico), com variantes para preloader, header e rodapé.
+- **Header:** marca, cinco âncoras e acesso ao CV local.
+- **Hero:** nome, AI Engineer, stack de foco, mensagem e diagrama procedural.
+- **Sobre:** foto original, posicionamento profissional preciso e três pilares.
+- **Competências:** quatro grupos sem níveis ou percentuais.
+- **Projetos:** estado honesto de novos projetos em construção.
+- **Contato:** e-mail, LinkedIn, GitHub e WhatsApp existentes.
+- **Footer:** identidade, navegação essencial e redes profissionais.
 
-**Linguagem gráfica:** grid técnico discreto, linhas de construção, formas geométricas 3D com aparência de metal/vidro, iluminação âmbar controlada.
+Lexora, Talentos Barbearia e a seção Processo foram removidos porque não representam o estado atual do portfólio.
 
-## Estrutura de conteúdo
+## Movimento e performance
 
-- **Hero:** conceitual, sem foto. Nome, cargo, resumo curto, dois CTAs ("Explorar projetos" / "Entrar em contato").
-- **Sobre:** única seção com foto.
-- **Projetos:** Lexora e Talentos Barbearia, mesmo layout de card, selo "Em desenvolvimento" visível em ambos. Sem links quebrados, métricas inventadas ou aparência de produto concluído.
-- **Competências:** agrupadas por responsabilidade (interfaces, aplicações, dados, qualidade), não lista decorativa.
-- **Processo:** fluxo curto do problema à validação.
-- **Contato:** e-mail, LinkedIn, GitHub — sem botão de currículo nesta versão.
+O Canvas mantém limites de densidade para desktop/mobile, DPR máximo de 1,5, pausa por visibilidade e interação somente com ponteiros finos. Reveals, cursores e construções procedurais respeitam `prefers-reduced-motion`.
 
-## Restrições técnicas
+O preloader é aprimoramento progressivo: encerra no evento `load`, imediatamente quando o documento já está completo, e possui fallback de 900 ms. Ele não impõe espera artificial longa.
 
-- Sem React, Three.js, bundler ou dependência de runtime.
-- Stack: HTML5 semântico, CSS moderno, SVG, JavaScript ES modules, Canvas 2D, `node:test`, GitHub Pages.
-- **Aprimoramento progressivo:** conteúdo e navegação principais funcionam sem JavaScript; JS só cuida de preloader, menu, navegação ativa e efeitos visuais.
-- Todo movimento respeita `prefers-reduced-motion`; Canvas pausa com `visibilitychange` e limita densidade por tamanho de tela/`devicePixelRatio`.
-- Efeitos decorativos nunca bloqueiam links, leitura ou rolagem.
+## Acessibilidade e publicação
 
-## Não-objetivos
+O documento mantém skip-link, foco visível, landmarks, um único H1, texto alternativo da foto, menu com `aria-expanded`, navegação por teclado e conteúdo legível sem JavaScript. Elementos procedurais são decorativos e ocultos de leitores de tela.
 
-- Framework front-end ou biblioteca 3D.
-- Back-end ou painel administrativo.
-- Publicar Lexora/Talentos Barbearia como produtos concluídos.
-- Métricas, clientes, resultados ou links de demonstração inventados.
-- Download de currículo (nesta versão).
+A arquitetura permanece HTML, CSS modular e JavaScript ES modules, sem dependências ou build. Caminhos locais são relativos para publicação na raiz de `main` pelo GitHub Pages.
 
-## Acessibilidade e SEO
+## Metadados
 
-- Estrutura semântica, hierarquia correta de títulos, skip-link, foco visível, navegação por teclado, `aria-expanded` no menu, contraste adequado, texto alternativo na foto.
-- Metadados Open Graph/Twitter Card, dados estruturados de pessoa/profissional, conteúdo indexável sem depender de JavaScript.
+O documento inclui title e description voltados a AI Engineering, além de Open Graph e Twitter Card básicos sem domínio próprio ou imagem social inventados.
