@@ -99,10 +99,9 @@ test('progressive enhancement and accessibility hooks remain', () => {
   for (const link of html.match(/<a\b[^>]*target="_blank"[^>]*>/g) ?? []) assert.match(link, /rel="noopener noreferrer"/);
 });
 
-test('styles remain modular, responsive, and motion-safe', () => {
+test('styles remain modular and responsive', () => {
   assert.equal(read('css/style.css').replace(/\r\n/g, '\n').trim(), ['@import url("./base.css");', '@import url("./components.css");', '@import url("./sections.css");', '@import url("./motion.css");', '@import url("./responsive.css");'].join('\n'));
   const css = ['base.css', 'components.css', 'sections.css', 'motion.css', 'responsive.css'].map((file) => read(`css/${file}`)).join('\n');
-  assert.match(css, /prefers-reduced-motion:\s*reduce/);
   for (const bp of ['960px', '720px', '480px']) assert.match(css, new RegExp(`max-width:\\s*${bp}`));
   assert.match(css, /min-height:\s*(?:44|48)px/);
   assert.match(css, /overflow-x:\s*(?:clip|hidden)/);
@@ -132,29 +131,11 @@ test('intro draws, holds, then fades with an independent safety timeout', () => 
   assert.match(css, /ff-trace 700ms/);
   assert.match(css, /intro-exit 300ms ease 2100ms/);
   assert.match(html, /setTimeout\(finishIntro, 3500\)/);
-  assert.match(html, /prefers-reduced-motion: reduce/);
 });
 
-test('motion opt-in persists for the portfolio and the system link clears it', () => {
-  const setup = read('index.html').match(/<script>([\s\S]*?)<\/script>/)[1];
-  const values = new Map();
-  const localStorage = {
-    setItem: (k, v) => values.set(k, v),
-    getItem: k => values.get(k),
-    removeItem: k => values.delete(k),
-  };
-  function load(search, storage = localStorage) {
-    const root = element();
-    runInNewContext(setup, { document: { documentElement: root }, URLSearchParams,
-      location: { search }, localStorage: storage });
-    return root.classList.contains('motion-opt-in');
-  }
-  assert.equal(load(''), false);
-  assert.equal(load('?animacoes=ativadas'), true);
-  assert.equal(load(''), true);
-  assert.equal(load('?animacoes=sistema'), false);
-  assert.equal(load(''), false);
-  assert.equal(load('?animacoes=ativadas', null), true);
+test('public page offers the portfolio actions without motion configuration', () => {
+  const html = read('index.html');
+  assert.doesNotMatch(html, /motion-options|portfolio-motion|href="\?animacoes=/);
 });
 
 test('intro waits for a visible tab and releases the hero even if animationend is lost', () => {
@@ -163,7 +144,7 @@ test('intro waits for a visible tab and releases the hero even if animationend i
   const intro = element();
   const root = element();
   const doc = eventTarget({ hidden: true, documentElement: root, getElementById: () => intro });
-  const motion = eventTarget({ matches: false });
+  const motion = eventTarget({ matches: true });
   let timeout;
   runInNewContext(script, {
     document: doc, window: { matchMedia: () => motion },
@@ -180,17 +161,13 @@ test('intro waits for a visible tab and releases the hero even if animationend i
   assert.equal(root.classList.contains('intro-active'), false);
 });
 
-test('reveal and canvas avoid animation for reduced motion', async () => {
-  const { initReveal } = await import('../js/reveal.js');
+test('canvas initializes when the browser requests reduced motion', async () => {
   const { initTechnicalCanvas } = await import('../js/technical-canvas.js');
-  const target = element();
-  const preloader = element();
-  initReveal({ documentElement: element(), getElementById: () => preloader, querySelectorAll: () => [target] }, { matchMedia: () => ({ matches: true }) });
-  assert.equal(target.classList.contains('is-visible'), true);
-  assert.equal(preloader.hidden, true);
-  let lookups = 0;
-  initTechnicalCanvas({ getElementById() { lookups += 1; } }, { matchMedia: () => ({ matches: true }) });
-  assert.equal(lookups, 0);
+  const fixture = canvasFixture();
+  fixture.windowRef.matchMedia = () => ({ matches: true });
+  const cleanup = initTechnicalCanvas(fixture.documentRef, fixture.windowRef);
+  assert.ok(fixture.animationFrames.size > 0);
+  cleanup();
 });
 
 test('canvas profile remains bounded for desktop and mobile', async () => {
@@ -309,22 +286,16 @@ test('project terminal types once after entering the viewport', async () => {
   cleanup();
 });
 
-test('project terminal reveals immediately for reduced motion', async () => {
+test('project terminal reveals immediately without an intersection observer', async () => {
   const { initProjectTerminal } = await import('../js/project-terminal.js');
   const output = element();
   const cursor = element();
   const terminal = element();
   terminal.getAttribute = () => '// novos projetos em breve';
   terminal.querySelector = (selector) => selector === '[data-terminal-output]' ? output : cursor;
-  let observerCount = 0;
-  const win = {
-    IntersectionObserver: class { constructor() { observerCount += 1; } },
-    matchMedia: () => ({ matches: true }),
-  };
-  initProjectTerminal({ querySelector: () => terminal }, win);
+  initProjectTerminal({ querySelector: () => terminal }, {});
   assert.equal(output.textContent, '// novos projetos em breve');
   assert.equal(cursor.hidden, false);
-  assert.equal(observerCount, 0);
 });
 
 test('skills cards keep the exact approved content in compact technical compositions', () => {

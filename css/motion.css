@@ -91,16 +91,3 @@
 @keyframes cursor-blink { 50% { opacity: 0; } }
 @keyframes node-pulse { 50% { opacity: .45; box-shadow: 0 0 1.1rem rgba(245,166,35,.3); } }
 @keyframes data-drift { 50% { translate: .6rem -.15rem; } }
-
-@media (prefers-reduced-motion: reduce) {
-  html:not(.motion-opt-in), html:not(.motion-opt-in) *, html:not(.motion-opt-in) *::before, html:not(.motion-opt-in) *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-  html:not(.motion-opt-in) #technical-canvas { display: none; }
-  html:not(.motion-opt-in) .terminal-cursor { animation: none !important; opacity: 1; }
-  html:not(.motion-opt-in) [data-reveal] { opacity: 1 !important; transform: none !important; }
-}
-
-.motion-options { display: none; }
-.js .motion-options { display: flex; flex-wrap: wrap; column-gap: 1.25rem; margin-top: .65rem; }
-.motion-options a { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-text-muted); font: .8rem var(--font-mono); text-decoration: underline; text-underline-offset: .24em; }
-.motion-options a:hover, .motion-options a:focus-visible { color: var(--color-accent); }
-html:not(.motion-opt-in) .motion-reset { display: none; }

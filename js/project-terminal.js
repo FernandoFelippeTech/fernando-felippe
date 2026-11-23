@@ -11,8 +11,6 @@ export function initProjectTerminal(
   const text = terminal.getAttribute?.('data-terminal-text') ?? '';
   if (!output || !cursor) return undefined;
 
-  const reducedMotion = !documentRef?.documentElement?.classList?.contains('motion-opt-in')
-    && windowRef?.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
   const setTimer = windowRef?.setTimeout?.bind(windowRef) ?? globalThis.setTimeout;
   const clearTimer = windowRef?.clearTimeout?.bind(windowRef) ?? globalThis.clearTimeout;
   let observer;
@@ -48,7 +46,7 @@ export function initProjectTerminal(
     timerId = setTimer(typeNext, stepMs);
   };
 
-  if (reducedMotion || typeof windowRef?.IntersectionObserver !== 'function') {
+  if (typeof windowRef?.IntersectionObserver !== 'function') {
     revealComplete();
     return () => revealComplete();
   }

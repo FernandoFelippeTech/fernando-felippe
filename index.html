@@ -14,20 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>
-    (() => {
-      const root = document.documentElement;
-      root.classList.add("js");
-      const choice = new URLSearchParams(location.search).get('animacoes');
-      let enabled = choice === 'ativadas';
-      try {
-        if (enabled) localStorage.setItem('portfolio-motion', 'full');
-        else if (choice === 'sistema') localStorage.removeItem('portfolio-motion');
-        else enabled = localStorage.getItem('portfolio-motion') === 'full';
-      } catch { /* The link also works when storage is unavailable. */ }
-      root.classList.toggle('motion-opt-in', enabled);
-    })();
-  </script>
+  <script>document.documentElement.classList.add("js");</script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -43,7 +30,6 @@
   <script>
     (() => {
       const intro = document.getElementById('preloader');
-      const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
       let safetyTimer;
       const root = document.documentElement;
       const finishIntro = () => {
@@ -51,20 +37,15 @@
         root.classList.remove('intro-active');
         clearTimeout(safetyTimer);
         intro.removeEventListener('animationend', onAnimationEnd);
-        motion.removeEventListener?.('change', onMotionChange);
       };
       const onAnimationEnd = event => {
         if (event.target === intro && event.animationName === 'intro-exit') finishIntro();
       };
-      const skipMotion = () => motion.matches && !root.classList.contains('motion-opt-in');
-      const onMotionChange = () => { if (skipMotion()) finishIntro(); };
       const startWhenVisible = () => {
         if (document.hidden) return;
         document.removeEventListener('visibilitychange', startWhenVisible);
-        if (skipMotion()) return;
         safetyTimer = setTimeout(finishIntro, 3500);
         intro.addEventListener('animationend', onAnimationEnd);
-        motion.addEventListener?.('change', onMotionChange);
         root.classList.add('intro-active');
         intro.hidden = false;
       };
@@ -119,10 +100,6 @@
           <div class="hero-actions">
             <a class="button button-primary" href="#projects">Ver projetos</a>
             <a class="button button-secondary" href="#contact">Entrar em contato</a>
-          </div>
-          <div class="motion-options">
-            <a href="?animacoes=ativadas">Rever abertura com animações</a>
-            <a class="motion-reset" href="?animacoes=sistema">Usar preferência do sistema</a>
           </div>
         </div>
 

@@ -6,15 +6,8 @@ export function initReveal(
 
   const root = documentRef.documentElement;
   const targets = [...documentRef.querySelectorAll('[data-reveal]')];
-  const reducedMotion = !documentRef?.documentElement?.classList?.contains('motion-opt-in')
-    && windowRef?.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
   let observer;
   const revealAll = () => targets.forEach((target) => target.classList.add('is-visible'));
-
-  if (reducedMotion) {
-    revealAll();
-    return () => revealAll();
-  }
 
   root?.classList.add('reveal-enabled');
 
