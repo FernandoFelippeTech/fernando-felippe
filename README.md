@@ -1,6 +1,6 @@
 # Portfólio — Fernando Felippe
 
-Portfólio estático de Fernando Felippe, desenvolvedor de software com foco em Engenharia de Inteligência Artificial. A página apresenta seu posicionamento como AI Engineer, áreas de estudo, competências técnicas e canais de contato em uma experiência responsiva e acessível.
+Portfólio estático de Fernando Felippe, desenvolvedor de software com foco em Engenharia de Inteligência Artificial. A página apresenta suas áreas de estudo, competências técnicas e canais de contato em uma experiência responsiva e acessível.
 
 ## Stack
 

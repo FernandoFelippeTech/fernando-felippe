@@ -39,9 +39,9 @@ function canvasFixture({ finePointer = true, width = 1200 } = {}) {
   return { animationFrames, canvas, context, documentRef, timers, windowRef, runFrame(time = 16) { const [id, callback] = animationFrames.entries().next().value; animationFrames.delete(id); callback(time); }, runTimer() { const [id, timer] = timers.entries().next().value; timers.delete(id); timer.callback(); return timer.delay; } };
 }
 
-test('page presents the approved AI Engineer positioning', () => {
+test('page presents the developer title and focus on AI', () => {
   const html = read('index.html');
-  assert.match(html, /<title>Fernando Felippe \| AI Engineer<\/title>/);
+  assert.match(html, /<title>Fernando Felippe \| Desenvolvedor<\/title>/);
   assert.match(html, /INTELIGÊNCIA ARTIFICIAL\s*•\s*ENGENHARIA DE SOFTWARE/);
   assert.match(html, /<h1[^>]*>\s*Fernando Felippe\s*<\/h1>/);
   assert.match(html, /Python\s*•\s*LLMs\s*•\s*RAG\s*•\s*Agentes de IA\s*•\s*APIs\s*•\s*SQL/);
@@ -86,7 +86,7 @@ test('projects is a coming-soon state and paused content is absent', () => {
 test('verified contact channels and footer positioning remain', () => {
   const html = read('index.html');
   for (const href of ['mailto:fernandofelippe2018@gmail.com', 'https://www.linkedin.com/in/fernando-felippe', 'https://github.com/FernandoFelippeTech', 'https://wa.me/5517991993731']) assert.ok(html.includes(`href="${href}"`));
-  assert.match(html, /Fernando Felippe[\s\S]*AI Engineer/);
+  assert.match(html, /<strong>Fernando Felippe<\/strong>\s*<small>Desenvolvedor<\/small>/);
 });
 
 test('progressive enhancement and accessibility hooks remain', () => {
