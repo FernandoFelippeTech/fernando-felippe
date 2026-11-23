@@ -21,7 +21,7 @@ O projeto não possui dependências de produção nem etapa de build:
 ├── css/                          # Base, componentes, seções, movimento e responsividade
 ├── js/                           # Navegação, reveals e Canvas técnico
 ├── images/                       # Foto e monograma SVG
-├── docs/                         # Decisões de design e futuro currículo
+├── docs/                         # Decisões de design e currículo em PDF
 ├── scripts/check-local-links.mjs # Validador de arquivos e âncoras locais
 ├── tests/portfolio.test.mjs      # Contrato automatizado do portfólio
 └── package.json                  # Comandos de teste e validação
@@ -48,7 +48,7 @@ No Windows com política restritiva do PowerShell, use `npm.cmd test` e `npm.cmd
 
 ## Currículo
 
-O botão “Baixar CV” está preparado para `docs/Fernando-Felippe-CV.pdf`. Esse arquivo ainda precisa ser adicionado; o projeto não inclui ou gera um currículo fictício.
+O botão “Baixar CV” do portfólio permite baixar o [currículo de Fernando Felippe em PDF](docs/Fernando-Felippe-CV.pdf).
 
 ## Publicação
 
