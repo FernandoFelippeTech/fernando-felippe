@@ -135,6 +135,28 @@ test('intro draws, holds, then fades with an independent safety timeout', () => 
   assert.match(html, /prefers-reduced-motion: reduce/);
 });
 
+test('motion opt-in persists for the portfolio and the system link clears it', () => {
+  const setup = read('index.html').match(/<script>([\s\S]*?)<\/script>/)[1];
+  const values = new Map();
+  const localStorage = {
+    setItem: (k, v) => values.set(k, v),
+    getItem: k => values.get(k),
+    removeItem: k => values.delete(k),
+  };
+  function load(search, storage = localStorage) {
+    const root = element();
+    runInNewContext(setup, { document: { documentElement: root }, URLSearchParams,
+      location: { search }, localStorage: storage });
+    return root.classList.contains('motion-opt-in');
+  }
+  assert.equal(load(''), false);
+  assert.equal(load('?animacoes=ativadas'), true);
+  assert.equal(load(''), true);
+  assert.equal(load('?animacoes=sistema'), false);
+  assert.equal(load(''), false);
+  assert.equal(load('?animacoes=ativadas', null), true);
+});
+
 test('intro waits for a visible tab and releases the hero even if animationend is lost', () => {
   const html = read('index.html');
   const script = html.match(/id="preloader"[\s\S]*?<script>([\s\S]*?)<\/script>/)[1];

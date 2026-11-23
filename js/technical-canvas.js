@@ -33,7 +33,8 @@ export function initTechnicalCanvas(
   windowRef = globalThis.window,
   random = Math.random,
 ) {
-  const reducedMotion = windowRef?.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
+  const reducedMotion = !documentRef?.documentElement?.classList?.contains('motion-opt-in')
+    && windowRef?.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
   if (reducedMotion) return undefined;
 
   const canvas = documentRef?.getElementById?.('technical-canvas');
