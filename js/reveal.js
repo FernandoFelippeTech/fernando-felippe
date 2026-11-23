@@ -1,4 +1,5 @@
-const PRELOADER_FALLBACK_MS = 900;
+const PRELOADER_HOLD_MS = 850;
+const PRELOADER_FALLBACK_MS = 2000;
 const PRELOADER_EXIT_MS = 220;
 
 export function initReveal(
@@ -16,7 +17,8 @@ export function initReveal(
   let observer;
   let exitTimer;
   let fallbackTimer;
-  let loadListener;
+  let holdTimer;
+  let paintFrame;
 
   const revealAll = () => targets.forEach((target) => target.classList.add('is-visible'));
 
@@ -26,13 +28,15 @@ export function initReveal(
     if (fallbackTimer !== undefined) clearTimer(fallbackTimer);
     exitTimer = undefined;
     fallbackTimer = undefined;
+    if (holdTimer !== undefined) clearTimer(holdTimer);
+    if (paintFrame !== undefined) windowRef?.cancelAnimationFrame?.(paintFrame);
     preloader.hidden = true;
     preloader.classList.remove('is-exiting');
     preloader.classList.add('is-hidden');
   };
 
   const beginPreloaderExit = () => {
-    if (!preloader || preloader.hidden) return;
+    if (!preloader || preloader.hidden || exitTimer !== undefined) return;
     preloader.classList.add('is-exiting');
     exitTimer = setTimer(finishPreloader, PRELOADER_EXIT_MS);
   };
@@ -50,11 +54,16 @@ export function initReveal(
     preloader.hidden = false;
     fallbackTimer = setTimer(beginPreloaderExit, PRELOADER_FALLBACK_MS);
 
-    if (documentRef.readyState === 'complete') {
-      beginPreloaderExit();
+    const startHold = () => {
+      holdTimer = setTimer(beginPreloaderExit, PRELOADER_HOLD_MS);
+    };
+    // Count from the first visible frame, including on cached navigations.
+    if (typeof windowRef?.requestAnimationFrame === 'function') {
+      paintFrame = windowRef.requestAnimationFrame(() => {
+        paintFrame = windowRef.requestAnimationFrame(startHold);
+      });
     } else {
-      loadListener = beginPreloaderExit;
-      windowRef?.addEventListener?.('load', loadListener, { once: true });
+      startHold();
     }
   }
 
@@ -73,7 +82,6 @@ export function initReveal(
 
   return () => {
     observer?.disconnect();
-    if (loadListener) windowRef?.removeEventListener?.('load', loadListener);
     finishPreloader();
     revealAll();
   };

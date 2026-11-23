@@ -29,7 +29,26 @@ export function initCardLighting(
   };
 }
 
+function initReadingProgress() {
+  const root = document.documentElement;
+  let frame;
+  function update() {
+    const distance = root.scrollHeight - root.clientHeight;
+    const fraction = distance > 0 ? window.scrollY / distance : 0;
+    root.style.setProperty('--reading-progress', String(Math.min(1, Math.max(0, fraction))));
+    frame = undefined;
+  }
+  function schedule() {
+    if (frame === undefined) frame = window.requestAnimationFrame(update);
+  }
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule);
+  window.addEventListener('pageshow', schedule);
+  update();
+}
+
 if (typeof document !== 'undefined' && typeof window !== 'undefined') {
+  initReadingProgress();
   initNavigation();
   initReveal();
   initTechnicalCanvas();

@@ -8,6 +8,25 @@
 .reveal-enabled [data-reveal].is-visible, [data-reveal].is-visible { opacity: 1; transform: none; }
 .terminal-cursor { animation: cursor-blink 900ms step-end infinite; }
 .code-node-b,.code-node-c { animation: node-pulse 3.4s ease-in-out infinite; }.data-flow-a,.data-flow-c { animation: data-drift 7s ease-in-out infinite; }.repo-connections path:first-child { animation: connection-flow 9s linear infinite; }.repo-card-head strong::before{animation:node-pulse 3.4s ease-in-out infinite}
+.site-header::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -1px;
+  height: 2px;
+  background: var(--color-accent);
+  transform: scaleX(var(--reading-progress, 0));
+  transform-origin: left;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .button:active { transform: scale(.97); }
+  .reveal-enabled .skill-group.is-visible { transition-delay: var(--card-delay, 0ms); }
+  @media (min-width: 721px) {
+    .skill-group:nth-child(even) { --card-delay: 100ms; }
+  }
+}
+
 @keyframes preloader-in { from { opacity: 0; transform: scale(.88); } to { opacity: 1; transform: scale(1); } }
 @keyframes signal-in { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes cursor-blink { 50% { opacity: 0; } }

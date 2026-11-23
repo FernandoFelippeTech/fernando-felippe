@@ -124,31 +124,27 @@ test('navigation keeps mobile state, label, and focus synchronized', async () =>
   cleanup();
 });
 
-test('preloader exits immediately for a complete document', async () => {
-  const { initReveal } = await import('../js/reveal.js');
-  const preloader = element();
-  const timers = [];
-  const doc = { readyState: 'complete', documentElement: element(), getElementById: () => preloader, querySelectorAll: () => [] };
-  const win = eventTarget({ matchMedia: () => ({ matches: false }), setTimeout(callback, delay) { timers.push({ callback, delay }); return timers.length; }, clearTimeout() {}, IntersectionObserver: class { disconnect() {} observe() {} } });
-  initReveal(doc, win);
-  assert.equal(preloader.classList.contains('is-exiting'), true);
-  assert.ok(timers.some(({ delay }) => delay === 220));
-});
-
-test('preloader listens for load and uses a short fallback', async () => {
-  const { initReveal } = await import('../js/reveal.js');
-  const preloader = element();
-  const timers = [];
-  const doc = { readyState: 'loading', documentElement: element(), getElementById: () => preloader, querySelectorAll: () => [] };
-  const win = eventTarget({ matchMedia: () => ({ matches: false }), setTimeout(callback, delay) { timers.push({ callback, delay }); return timers.length; }, clearTimeout() {} });
-  const cleanup = initReveal(doc, win);
-  assert.equal(win.listenerCount('load'), 1);
-  assert.ok(timers.some(({ delay }) => delay === 900));
-  win.emit('load');
-  assert.equal(preloader.classList.contains('is-exiting'), true);
-  cleanup();
-  assert.equal(win.listenerCount('load'), 0);
-});
+for (const readyState of ['complete', 'loading']) {
+  test(`preloader shows the monogram before exiting on a ${readyState} page`, async () => {
+    const { initReveal } = await import('../js/reveal.js');
+    const { windowRef, runFrame, timers } = canvasFixture();
+    const preloader = element();
+    const doc = { readyState, documentElement: element(), getElementById: () => preloader, querySelectorAll: () => [] };
+    initReveal(doc, windowRef);
+    windowRef.emit('load');
+    assert.equal(preloader.hidden, false);
+    assert.equal(preloader.classList.contains('is-exiting'), false);
+    runFrame();
+    runFrame();
+    const hold = [...timers.values()].find(timer => timer.delay === 850);
+    assert.ok(hold);
+    hold.callback();
+    assert.equal(preloader.classList.contains('is-exiting'), true);
+    const fade = [...timers.values()].find(timer => timer.delay === 220);
+    fade.callback();
+    assert.equal(preloader.hidden, true);
+  });
+}
 
 test('reveal and canvas avoid animation for reduced motion', async () => {
   const { initReveal } = await import('../js/reveal.js');
@@ -398,7 +394,7 @@ test('reveal fallback exposes content and observed content becomes visible', asy
   const fallbackDoc = { documentElement: element(), readyState: 'loading', getElementById: () => fallbackPreloader, querySelectorAll: () => [fallbackTarget] };
   initReveal(fallbackDoc, { matchMedia: () => ({ matches: false }), setTimeout(callback, delay) { fallbackTimers.push({ callback, delay }); return fallbackTimers.length; }, clearTimeout() {} });
   assert.equal(fallbackTarget.classList.contains('is-visible'), true);
-  fallbackTimers.find(({ delay }) => delay === 900).callback();
+  fallbackTimers.find(({ delay }) => delay === 2000).callback();
   assert.equal(fallbackPreloader.classList.contains('is-exiting'), true);
   fallbackTimers.find(({ delay }) => delay === 220).callback();
   assert.equal(fallbackPreloader.hidden, true);
