@@ -21,9 +21,43 @@
   <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
 
   <div id="preloader" aria-hidden="true" hidden>
-    <img class="preloader-mark" src="images/ff-mark.svg" alt="" width="64" height="64">
-    <span class="preloader-signal"></span>
+    <svg class="preloader-mark" viewBox="0 0 64 64" aria-hidden="true">
+      <path pathLength="1" d="M7 7h25v9H18v10h12l-4 9h-8v22H7V7Z"/>
+      <path pathLength="1" d="M35 7h22l-4 9h-8v9h11l-5 9h-6v23H34V18l1-11Z"/>
+      <circle cx="55" cy="51" r="3" fill="#f5a623"/>
+    </svg>
   </div>
+  <script>
+    (() => {
+      const intro = document.getElementById('preloader');
+      const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let safetyTimer;
+      const root = document.documentElement;
+      const finishIntro = () => {
+        intro.hidden = true;
+        root.classList.remove('intro-active');
+        clearTimeout(safetyTimer);
+        intro.removeEventListener('animationend', onAnimationEnd);
+        motion.removeEventListener?.('change', onMotionChange);
+      };
+      const onAnimationEnd = event => {
+        if (event.target === intro && event.animationName === 'intro-exit') finishIntro();
+      };
+      const onMotionChange = () => { if (motion.matches) finishIntro(); };
+      const startWhenVisible = () => {
+        if (document.hidden) return;
+        document.removeEventListener('visibilitychange', startWhenVisible);
+        if (motion.matches) return;
+        safetyTimer = setTimeout(finishIntro, 3500);
+        intro.addEventListener('animationend', onAnimationEnd);
+        motion.addEventListener?.('change', onMotionChange);
+        root.classList.add('intro-active');
+        intro.hidden = false;
+      };
+      document.addEventListener('visibilitychange', startWhenVisible);
+      startWhenVisible();
+    })();
+  </script>
 
   <canvas id="technical-canvas" aria-hidden="true"></canvas>
 
@@ -152,7 +186,7 @@
 
     <section id="projects" class="projects-section">
       <div class="repository-stack" aria-hidden="true">
-        <svg class="repo-connections" viewBox="0 0 660 390" preserveAspectRatio="none"><path d="M95 300C180 300 165 215 255 215S350 126 442 126 500 72 580 72"/><path d="M165 340H350c56 0 46-82 105-82h120"/><circle cx="95" cy="300" r="4"/><circle cx="255" cy="215" r="4"/><circle cx="442" cy="126" r="4"/><circle cx="575" cy="258" r="4"/></svg>
+        <svg class="repo-connections" viewBox="0 0 660 390" preserveAspectRatio="none"><path pathLength="1" d="M95 300C180 300 165 215 255 215S350 126 442 126 500 72 580 72"/><path pathLength="1" d="M165 340H350c56 0 46-82 105-82h120"/><circle cx="95" cy="300" r="4"/><circle cx="255" cy="215" r="4"/><circle cx="442" cy="126" r="4"/><circle cx="575" cy="258" r="4"/></svg>
         <div class="project-repo-card repo-card-back">
           <div class="repo-card-head"><span>PROJETO 03</span><strong>EM BREVE</strong></div>
           <div class="repo-code"><i></i><i></i><i></i></div>

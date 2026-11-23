@@ -38,6 +38,7 @@ export function initProjectTerminal(
   const start = () => {
     if (started) return;
     started = true;
+    terminal.closest?.('#projects')?.classList.add('is-typing');
     observer?.unobserve?.(terminal);
     if (!text) {
       revealComplete();

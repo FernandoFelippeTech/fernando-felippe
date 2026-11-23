@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import test from 'node:test';
+import { runInNewContext } from 'node:vm';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -124,27 +125,38 @@ test('navigation keeps mobile state, label, and focus synchronized', async () =>
   cleanup();
 });
 
-for (const readyState of ['complete', 'loading']) {
-  test(`preloader shows the monogram before exiting on a ${readyState} page`, async () => {
-    const { initReveal } = await import('../js/reveal.js');
-    const { windowRef, runFrame, timers } = canvasFixture();
-    const preloader = element();
-    const doc = { readyState, documentElement: element(), getElementById: () => preloader, querySelectorAll: () => [] };
-    initReveal(doc, windowRef);
-    windowRef.emit('load');
-    assert.equal(preloader.hidden, false);
-    assert.equal(preloader.classList.contains('is-exiting'), false);
-    runFrame();
-    runFrame();
-    const hold = [...timers.values()].find(timer => timer.delay === 850);
-    assert.ok(hold);
-    hold.callback();
-    assert.equal(preloader.classList.contains('is-exiting'), true);
-    const fade = [...timers.values()].find(timer => timer.delay === 220);
-    fade.callback();
-    assert.equal(preloader.hidden, true);
+test('intro draws, holds, then fades with an independent safety timeout', () => {
+  const html = read('index.html');
+  const css = read('css/motion.css');
+  assert.match(html, /<svg class="preloader-mark"/);
+  assert.match(css, /ff-trace 700ms/);
+  assert.match(css, /intro-exit 300ms ease 2100ms/);
+  assert.match(html, /setTimeout\(finishIntro, 3500\)/);
+  assert.match(html, /prefers-reduced-motion: reduce/);
+});
+
+test('intro waits for a visible tab and releases the hero even if animationend is lost', () => {
+  const html = read('index.html');
+  const script = html.match(/id="preloader"[\s\S]*?<script>([\s\S]*?)<\/script>/)[1];
+  const intro = element();
+  const root = element();
+  const doc = eventTarget({ hidden: true, documentElement: root, getElementById: () => intro });
+  const motion = eventTarget({ matches: false });
+  let timeout;
+  runInNewContext(script, {
+    document: doc, window: { matchMedia: () => motion },
+    setTimeout(callback, delay) { timeout = { callback, delay }; return 1; }, clearTimeout() {},
   });
-}
+  assert.equal(timeout, undefined);
+  doc.hidden = false;
+  doc.emit('visibilitychange');
+  assert.equal(intro.hidden, false);
+  assert.ok(root.classList.contains('intro-active'));
+  assert.equal(timeout.delay, 3500);
+  timeout.callback();
+  assert.equal(intro.hidden, true);
+  assert.equal(root.classList.contains('intro-active'), false);
+});
 
 test('reveal and canvas avoid animation for reduced motion', async () => {
   const { initReveal } = await import('../js/reveal.js');
@@ -394,10 +406,6 @@ test('reveal fallback exposes content and observed content becomes visible', asy
   const fallbackDoc = { documentElement: element(), readyState: 'loading', getElementById: () => fallbackPreloader, querySelectorAll: () => [fallbackTarget] };
   initReveal(fallbackDoc, { matchMedia: () => ({ matches: false }), setTimeout(callback, delay) { fallbackTimers.push({ callback, delay }); return fallbackTimers.length; }, clearTimeout() {} });
   assert.equal(fallbackTarget.classList.contains('is-visible'), true);
-  fallbackTimers.find(({ delay }) => delay === 2000).callback();
-  assert.equal(fallbackPreloader.classList.contains('is-exiting'), true);
-  fallbackTimers.find(({ delay }) => delay === 220).callback();
-  assert.equal(fallbackPreloader.hidden, true);
   const observedTarget = element();
   let observerCallback;
   let unobserved;
