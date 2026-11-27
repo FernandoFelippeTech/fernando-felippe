@@ -77,10 +77,13 @@ test('skills expose focus areas without proficiency claims', () => {
   assert.doesNotMatch(html, /\b(?:expert|avançado|90%)\b/i);
 });
 
-test('projects is a coming-soon state and paused content is absent', () => {
+test('projects presents EuropaTrack with its screenshot and public repository', () => {
   const html = read('index.html');
-  assert.match(html, /Construindo o que vem a seguir\./);
-  assert.match(html, /novos projetos em breve/);
+  const projects = html.match(/<section id="projects"[\s\S]*?<\/section>/)?.[0] ?? '';
+  assert.match(projects, /<h3[^>]*>EuropaTrack<\/h3>/);
+  assert.match(projects, /src="images\/europatrack\.png"[^>]+alt="[^"]+"/);
+  assert.match(projects, /href="https:\/\/github\.com\/FernandoFelippeTech\/EuropaTrack"/);
+  assert.doesNotMatch(projects, /em breve/i);
   assert.doesNotMatch(html, /Lexora|Talentos Barbearia|<section id="process"/);
 });
 
@@ -226,15 +229,6 @@ test('about uses compact unnumbered summaries while preserving skills cards', ()
   for (const group of ['AI ENGINEERING', 'BACKEND &amp; APIs', 'DADOS', 'SOFTWARE ENGINEERING']) assert.match(html, new RegExp(group));
 });
 
-test('projects exposes one-shot typing hooks and a repository stack', () => {
-  const html = read('index.html');
-  assert.match(html, /class="repository-stack"/);
-  assert.match(html, /data-terminal-text="\/\/ novos projetos em breve"/);
-  assert.match(html, /data-terminal-output/);
-  assert.match(html, /data-terminal-cursor/);
-  assert.doesNotMatch(html, /construct-cube cube-one|construct-cube cube-two/);
-});
-
 test('contact and footer use accessible inline SVG social links without icon libraries', () => {
   const html = read('index.html');
   const contact = html.match(/<section id="contact"[\s\S]*?<\/section>/)?.[0] ?? '';
@@ -319,21 +313,11 @@ test('skills cards keep the exact approved content in compact technical composit
   assert.deepEqual(listedSkills, [...expected.values()].flat());
 });
 
-test('projects uses neutral coming-soon repository cards while preserving terminal behavior', () => {
+test('the EuropaTrack stack is available with and without the typing enhancement', () => {
   const html = read('index.html');
-  const projects = html.match(/<section id="projects"[\s\S]*?<\/section>/)?.[0] ?? '';
-  assert.match(projects, /class="repository-stack"[^>]+aria-hidden="true"/);
-  assert.equal((projects.match(/class="project-repo-card/g) ?? []).length, 3);
-  assert.match(projects, />PROJETO 01</);
-  assert.match(projects, />PROJETO 02</);
-  assert.match(projects, />PROJETO 03</);
-  assert.equal((projects.match(/>EM BREVE</g) ?? []).length, 3);
-  for (const area of ['AI', 'SOFTWARE', 'DATA']) assert.match(projects, new RegExp(`>${area}<`));
-  assert.match(projects, /class="repo-connections"/);
-  assert.doesNotMatch(projects, /class="isometric-scene"|class="isometric-grid"|class="iso-cube|class="iso-node/);
-  assert.match(projects, /data-terminal-text="\/\/ novos projetos em breve"/);
-  assert.match(projects, /data-terminal-output/);
-  assert.match(projects, /data-terminal-cursor/);
+  assert.match(html, /data-terminal-text="Python[^"]+FastAPI[^"]+React[^"]+SQLite"/);
+  assert.match(html, /data-terminal-output>Python[^<]+FastAPI[^<]+React[^<]+SQLite</);
+  assert.match(html, /data-terminal-cursor/);
   assert.match(read('js/main.js'), /initProjectTerminal\(\)/);
 });
 
